@@ -12,7 +12,7 @@ function Counter() {
 
     return (
         <div className="counter-wrapper">
-            <h1>Context</h1>
+            <h1>Counter</h1>
             <div className="counter-row">
                 <button disabled={count === 0} onClick={() => setCounter(count - 1)}>-</button>
                 <span className="counter">{count}</span>
