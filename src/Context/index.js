@@ -7,7 +7,7 @@ function Counter({children}) {
     const [currency, setCurrency] = useState('£')
     const [theme, setTheme] = useState(false)
     const styles = {
-        background: 'orange',
+        background: 'black',
         color: 'white'
     }
 
