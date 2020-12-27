@@ -1,0 +1,22 @@
+.registration {
+  width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-element {
+  display: flex;
+  width: 400px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.form-element label {
+  display: block;
+  width: 150px;
+  text-align: left;
+}
+.form-element input,
+.form-element select {
+  flex: 1;
+}
