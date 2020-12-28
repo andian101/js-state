@@ -1,19 +1,16 @@
-import {useState, createContext} from 'react';
+import {createContext, useReducer} from 'react';
+import {reducer, initialState} from './reducer';
+import './styles.css';
 
 export const CounterContext = createContext();
-
 function Counter({children}) {
-    const [count, setCount] = useState(0);
-    const [currency, setCurrency] = useState('£')
-    const [theme, setTheme] = useState(false)
-    const styles = {
-        background: 'black',
-        color: 'white'
-    }
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    console.log(state);
 
     return (
-        <CounterContext.Provider value={{count, setCount, currency, setCurrency, theme, setTheme}}>
-            <div className="App" style={theme ? styles : {}}>
+        <CounterContext.Provider value={{state, dispatch}}>
+            <div className={`App ${state.theme ? 'dark-theme': 'light-theme'}`}>
                 {children}
             </div>
         </CounterContext.Provider>

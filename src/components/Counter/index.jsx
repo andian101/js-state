@@ -4,10 +4,10 @@ import './index.css';
 
 
 function Counter() {
-    const context = useContext(CounterContext);
-    const {count, setCount} = context;
+    const {dispatch, state: {count}} = useContext(CounterContext);
     const setCounter = (val) => {
-        return val <= 0 ? setCount(0) : setCount(val);
+        const sentVal = val <= 0 ? 0 : val;
+        return dispatch({type: 'count', payload: sentVal});
     }
 
     return (

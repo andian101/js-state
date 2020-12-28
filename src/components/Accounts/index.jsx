@@ -4,8 +4,8 @@ import './index.css';
 
 
 function Counter() {
-    const context = useContext(CounterContext);
-    const {count, currency} = context;
+    const {state} = useContext(CounterContext);
+    const {count, currency} = state;
 
     return (
         <div className="accounts-wrapper">
