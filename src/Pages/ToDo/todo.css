@@ -1,0 +1,57 @@
+.todos {
+  display: flex;
+  align-items: flex-start;
+  padding: 40px;
+  flex-wrap: wrap;
+}
+
+.todos h1 {
+  width: 100%;
+  margin: 0 0 40px 0;
+}
+
+.todos form {
+  border-right: 2px solid palevioletred;
+  padding-right: 20px;
+  width: 30vw;
+}
+
+.todos label {
+  width: 100px;
+  margin-bottom: 10px;
+  display: block;
+}
+.todos textarea,
+.todos input {
+  padding: 5px;
+  width: calc(100% - 10px);
+}
+.todos button {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.todos__form-field {
+  margin-bottom: 20px;
+}
+
+.todos__list { 
+  margin: 0 0 0 -20px;
+}
+
+.todos__todo {
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.todos__todo--complete {
+  background-color: rgba(3, 194, 67, 0.7);
+}
+
+.todos__todo--not-complete {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.todos__todo h3 {
+  margin-top: 0;
+}
