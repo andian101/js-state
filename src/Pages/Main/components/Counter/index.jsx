@@ -1,10 +1,10 @@
-import {useContext} from 'react';
-import {CounterContext} from '../../Context';
+import { MainContext } from '../../';
+import { useContext } from 'react';
 import './index.css';
 
 
 function Counter() {
-    const {dispatch, state: {count}} = useContext(CounterContext);
+    const {dispatch, state: {count}} = useContext(MainContext);
     const setCounter = (val) => {
         const sentVal = val <= 0 ? 0 : val;
         return dispatch({type: 'count', payload: sentVal});

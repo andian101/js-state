@@ -1,9 +1,9 @@
 import {useContext} from 'react';
-import {CounterContext} from '../../Context';
+import {MainContext} from '../../';
 import './index.css';
 
-function Counter() {
-    const {state, dispatch} = useContext(CounterContext);
+function Settings() {
+    const {state, dispatch} = useContext(MainContext);
     const {currency, theme} = state;
 
     return (
@@ -27,4 +27,4 @@ function Counter() {
     );
 }
 
-export default Counter;
+export default Settings;

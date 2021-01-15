@@ -1,10 +1,9 @@
-import {useContext} from 'react';
-import {CounterContext} from '../../Context';
 import './index.css';
+import { useContext } from 'react';
+import { MainContext } from '../../';
 
-
-function Counter() {
-    const {state} = useContext(CounterContext);
+function Accounts() {
+    const {state} = useContext(MainContext);
     const {count, currency} = state;
 
     return (
@@ -17,4 +16,4 @@ function Counter() {
     );
 }
 
-export default Counter;
+export default Accounts;

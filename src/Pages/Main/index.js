@@ -1,0 +1,24 @@
+import Counter from './components/Counter';
+import Accounts from './components/Accounts';
+import Settings from './components/Settings';
+import {createContext, useReducer} from 'react';
+import {reducer, initialState} from './reducer';
+import './Main.css';
+
+export const MainContext = createContext();
+
+function Main() {
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    return (
+        <MainContext.Provider value={{state, dispatch}}>
+            <div className={`App ${state.theme ? 'dark-theme': 'light-theme'}`}>
+                <Counter />
+                <Accounts />
+                <Settings />
+            </div>
+        </MainContext.Provider>
+    );
+}
+
+export default Main;
