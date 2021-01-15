@@ -3,7 +3,7 @@ import Accounts from './components/Accounts';
 import Settings from './components/Settings';
 import {createContext, useReducer} from 'react';
 import {reducer, initialState} from './reducer';
-import './Main.css';
+import './main.css';
 
 export const MainContext = createContext();
 
