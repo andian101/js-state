@@ -1,9 +1,9 @@
 import {useContext} from 'react';
-import {CounterContext} from '../../Context';
+import {MainContext} from '../../';
 import './index.css';
 
 function Counter() {
-    const context = useContext(CounterContext);
+    const context = useContext(MainContext);
     const {currency, setCurrency, setTheme, theme} = context;
 
     return (
