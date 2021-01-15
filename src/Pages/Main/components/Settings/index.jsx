@@ -3,7 +3,7 @@ import {MainContext} from '../../';
 import './index.css';
 
 function Settings() {
-    const {state, dispatch} = useContext(MainContext);
+    const {state, actions: {toggleTheme, setCurrency}} = useContext(MainContext);
     const {currency, theme} = state;
 
     return (
@@ -11,7 +11,7 @@ function Settings() {
             <h1>Settings</h1>
             <div className="settings-element">
                 <label>Change Currency</label>
-                <select value={currency} onChange={(e) => dispatch({ type: 'currency', payload: e.target.value })}>
+                <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
                     <option value="£">£</option>
                     <option value="€">€</option>
                     <option value="$">$</option>
@@ -19,7 +19,7 @@ function Settings() {
             </div>
             <div className="settings-element">
                 <label>Change Theme</label>
-                <button onClick={() => dispatch({type: 'theme', payload: !theme})}>
+                <button onClick={() => toggleTheme()}>
                     {theme ? 'Light Mode' : 'Dark Mode'}
                 </button>
             </div>
