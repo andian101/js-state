@@ -13,21 +13,21 @@ const initialState = [
     }
 ];
 
-const createTodo = (toDo) => {
+export const createTodo = (toDo) => {
     return {
         type: ADD_TODO,
         payload: toDo
     }
 }
 
-const toggleComplete = (id) => {
+export const toggleComplete = (id) => {
     return {
         type: TOGGLE_TODO_COMPLETE,
         payload: id
     }
 }
 
-const deleteTodo = (id) => {
+export const deleteTodo = (id) => {
     return {
         type: DELETE_TODO,
         payload: id
@@ -35,7 +35,7 @@ const deleteTodo = (id) => {
 }
 
 // Our reducer
-const todoReducer = (state, action) => {
+const todoReducer = (state = initialState, action) => {
     switch(action.type){ 
         case ADD_TODO:
             return [
@@ -58,3 +58,5 @@ const todoReducer = (state, action) => {
             return state;
     }
 }
+
+export default todoReducer;
