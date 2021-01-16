@@ -1,10 +1,10 @@
 import {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {createTodo, toggleComplete, deleteTodo} from '../../store/reducers/todoReducer';
+import {getToDoImage, toggleComplete, deleteTodo} from '../../store/reducers/todoReducer';
 import './todo.css';
 
 function ToDo() {
-    const { todos } = useSelector(s => s);
+    const { todos: {todos, loading} } = useSelector(state => state);
     const dispatch = useDispatch();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -17,7 +17,7 @@ function ToDo() {
             description,
             completed: false
         }
-        dispatch(createTodo(newNote))
+        dispatch(getToDoImage(newNote))
     }
 
     return (
@@ -25,25 +25,33 @@ function ToDo() {
             <h1>My Todo List!!!</h1>
             <div>
                 <form onSubmit={buildTodo}>
-                    <div className="todos__form-field">
-                        <label>Title</label>
-                        <input
-                            value={title}
-                            type='text'
-                            placeholder="Title"
-                            onChange={e => setTitle(e.target.value)} 
-                        />
-                    </div>
-                    <div className="todos__form-field">
-                        <label>Description</label>
-                        <textarea
-                            value={description}
-                            placeholder="Description"
-                            onChange={e => setDescription(e.target.value)} 
-                        />
-                    </div>
-                    <button disabled={!title || !description} type="submit">Create todo</button>
+                    {
+                        loading ?
+                        <div>Loading...</div>
+                        :
+                        <>
+                            <div className="todos__form-field">
+                                <label>Title</label>
+                                <input
+                                    value={title}
+                                    type='text'
+                                    placeholder="Title"
+                                    onChange={e => setTitle(e.target.value)} 
+                                />
+                            </div>
+                            <div className="todos__form-field">
+                                <label>Description</label>
+                                <textarea
+                                    value={description}
+                                    placeholder="Description"
+                                    onChange={e => setDescription(e.target.value)} 
+                                />
+                            </div>
+                            <button disabled={!title || !description} type="submit">Create todo</button>
+                        </>
+                    }
                 </form>
+    
             </div> 
             <ul className="todos__list">
                 {
@@ -59,6 +67,10 @@ function ToDo() {
                     >
                         <h3>{note.title}</h3>
                         <p>{note.description}</p>
+                        {
+                            note.quote &&
+                            <p><i>{note.quote}</i></p>
+                        }
                         <button onClick={() => dispatch(toggleComplete(note.id))}>
                             {note.completed ? 'Mark as undone' : 'Mark as done'}
                         </button>

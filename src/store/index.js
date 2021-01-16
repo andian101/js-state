@@ -1,10 +1,12 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+
 import todoReducer from './reducers/todoReducer'
 
-// Combine Reducers
-var reducers = combineReducers({
+const middleware = applyMiddleware(thunk);
+const reducers = combineReducers({
     todos: todoReducer
 });
 
-const store = createStore(reducers);
+const store = createStore(reducers, middleware);
 export default store;
