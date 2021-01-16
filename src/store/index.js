@@ -1,12 +1,21 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { combineReducers } from 'redux';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { createLogger } from 'redux-logger';
 
-import todoReducer from './reducers/todoReducer'
+import todos from './slices/todoSlice'
 
-const middleware = applyMiddleware(thunk);
+const logger = createLogger();
+const middleware = [
+    ...getDefaultMiddleware(),
+    logger
+];
+
 const reducers = combineReducers({
-    todos: todoReducer
+    todos: todos.reducer
 });
 
-const store = createStore(reducers, middleware);
+const store = configureStore({
+    reducer: reducers,
+    middleware
+})
 export default store;
