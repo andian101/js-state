@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {getToDoImage, toggleComplete, deleteTodo} from '../../store/reducers/todoReducer';
+import {getToDoQuote, toggleComplete, deleteTodo} from '../../store/slices/todoSlice';
 import './todo.css';
 
 function ToDo() {
@@ -17,7 +17,7 @@ function ToDo() {
             description,
             completed: false
         }
-        dispatch(getToDoImage(newNote))
+        dispatch(getToDoQuote(newNote))
     }
 
     return (
@@ -71,10 +71,10 @@ function ToDo() {
                             note.quote &&
                             <p><i>{note.quote}</i></p>
                         }
-                        <button onClick={() => dispatch(toggleComplete(note.id))}>
+                        <button onClick={() => dispatch(toggleComplete({id: note.id }))}>
                             {note.completed ? 'Mark as undone' : 'Mark as done'}
                         </button>
-                        <button onClick={() => dispatch(deleteTodo(note.id))}>
+                        <button onClick={() => dispatch(deleteTodo({id: note.id}))}>
                             Delete
                         </button>
                     </div>

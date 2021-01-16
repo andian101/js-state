@@ -4,7 +4,7 @@ const initialState = {
     loading: false,
     todos: [
         {
-            id: '1',
+            id: 1,
             title: "Wash Bike",
             description: "Wash bike. Its is dirty",
             completed: false
@@ -16,21 +16,21 @@ const todoSlice = createSlice({
     name: 'todos',
     initialState,
     reducers: {
-        createTodo(state, payload) {
-            state.todos = [...state.todos, {...payload.todo}]
+        createTodo(state, {payload: { todo }}) {
+            state.todos = [...state.todos, todo]
         },
-        toggleComplete(state, payload) {
+        toggleComplete(state, {payload: {id}}) {
             state.todos = state.todos.map(note => (
-                note.id === payload.id ? 
+                note.id === id ? 
                     {...note, completed: !note.completed} : 
                     note
             ))
         },
-        deleteTodo(state, payload) {
-            state.todos = state.todos.filter(note => note.id !== payload.id)
+        deleteTodo(state, {payload: {id}}) {
+            state.todos = state.todos.filter(note => note.id !== id)
         },
-        setLoading(state, payload) {
-            state.loading = payload.loading;
+        setLoading(state, {payload: {loading}}) {
+            state.loading = loading;
         },
     }
 })
@@ -43,17 +43,19 @@ export const {
 } = todoSlice.actions;
 
 // Async Actions - Thunks
-export const getToDoImage = (data) => {
+export const getToDoQuote = (data) => {
     return async (dispatch, getState) => {
-        dispatch(setLoading(true))
+        dispatch(setLoading({loading: true}))
         const quotes = await (await fetch('https://60031a89a3c5f100179130a2.mockapi.io/id')).json();
+        
         const quote = quotes[Math.floor(Math.random() * quotes.length) + 1];
-        const newData = { ...data, quote: quote.quote };
+        const todo = { ...data, quote: quote.quote };
+        console.log('todo', todo)
         
         // Fake timer
         await setTimeout(() => {
-            dispatch(createTodo(newData));
-            dispatch(setLoading(false))
+            dispatch(createTodo({ todo }));
+            dispatch(setLoading({ loading: false }))
         }, 1000);
     };
 }
