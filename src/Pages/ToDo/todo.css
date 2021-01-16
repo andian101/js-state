@@ -36,12 +36,17 @@
 }
 
 .todos__list { 
-  margin: 0 0 0 -20px;
+  margin: 0 20px 0 -20px;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .todos__todo {
-  margin-bottom: 20px;
+  margin: 0 10px 20px 0;
   padding: 10px;
+  width: 200px;
 }
 
 .todos__todo--complete {
