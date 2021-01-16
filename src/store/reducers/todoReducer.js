@@ -40,19 +40,18 @@ const todoReducer = (state = initialState, action) => {
         case ADD_TODO:
             return [
                 ...state,
-                {
-                    ...action.payload
-                }
+                action.payload
             ]
+
         case TOGGLE_TODO_COMPLETE: 
             return state.map(note => (
-                note.id === action.payload.id ? 
+                note.id === action.payload ? 
                     {...note, completed: !note.completed} : 
                     note
             ))
         
         case DELETE_TODO: 
-            return state.filter(note => note.id !== action.payload.id);
+            return state.filter(note => note.id !== action.payload);
         
         default: 
             return state;
