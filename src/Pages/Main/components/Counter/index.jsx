@@ -1,11 +1,18 @@
-import {useState} from 'react';
+import {useContext} from 'react';
+import {MainContext} from '../../';
 import './index.css';
 
 
 function Counter() {
-    const [count, setCount] = useState(0);
+    const {state, dispatch} = useContext(MainContext);
+    const {count} = state;
+    
     const setCounter = (val) => {
-        return val <= 0 ? setCount(0) : setCount(val);
+        const payload = val <= 0 ? 0 : val;
+        return dispatch({
+            type: 'count',
+            payload
+        })
     }
 
     return (

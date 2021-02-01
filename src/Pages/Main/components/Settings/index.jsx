@@ -4,14 +4,18 @@ import './index.css';
 
 function Counter() {
     const context = useContext(MainContext);
-    const {currency, setCurrency, setTheme, theme} = context;
+    const {state, dispatch} = context;
+    const {currency, theme} = state;
 
     return (
         <div className="settings-wrapper">
             <h1>Settings</h1>
             <div className="settings-element">
                 <label>Change Currency</label>
-                <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
+                <select value={currency} onChange={(e) => dispatch({
+                        type: 'currency',
+                        payload: e.target.value
+                    })}>
                     <option value="£">£</option>
                     <option value="€">€</option>
                     <option value="$">$</option>
@@ -19,7 +23,10 @@ function Counter() {
             </div>
             <div className="settings-element">
                 <label>Change Theme</label>
-                <button onClick={() => setTheme(!theme)}>
+                <button onClick={() => dispatch({
+                    type: 'theme',
+                    payload: !theme
+                })}>
                     {theme ? 'Light Mode' : 'Dark Mode'}
                 </button>
             </div>

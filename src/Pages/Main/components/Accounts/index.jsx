@@ -1,8 +1,9 @@
 import './index.css';
+import {MainContext} from '../../';
+import {useContext} from 'react'
 
 function Accounts() {
-    const count = 5;
-    const currency = "$";
+    const { state: { count, currency } } = useContext(MainContext);
 
     return (
         <div className="accounts-wrapper">

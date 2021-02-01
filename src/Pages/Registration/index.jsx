@@ -1,12 +1,42 @@
-import {useState} from 'react';
+import {useReducer} from 'react';
 import './index.css';
 
+const initialState = {
+  firstName: '',
+  lastName: '',
+  age: 0,
+  address: '',
+  postcode: '',
+};
+
+const reducer = (state, action) => {
+  switch(action.type) {
+    case 'update':
+      return {
+        ...state,
+        [action.field]: action.value
+      }
+    default:
+      return {...state}
+  }
+} 
+
 function Registration() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [age, setAge] = useState(0);
-  const [address, setAddress] = useState('');
-  const [postcode, setPostcode] = useState('');
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const {
+    firstName,
+    lastName,
+    age,
+    address,
+    postcode,
+  } = state;
+
+  const handleChange = e => dispatch({
+      type: 'update',
+      field: e.target.name, 
+      value: e.target.value
+  });
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -22,9 +52,9 @@ function Registration() {
               <input 
                 type="text"
                 id="first-name"
-                name="first-name"
+                name="firstName"
                 value={firstName}
-                onChange={e => setFirstName(e.target.value)} 
+                onChange={e => handleChange(e)} 
               />
           </div>
           <div className="form-element">
@@ -32,9 +62,9 @@ function Registration() {
               <input 
                 type="text"
                 id="last-name"
-                name="last-name"
+                name="lastName"
                 value={lastName}
-                onChange={e => setLastName(e.target.value)} 
+                onChange={e => handleChange(e)} 
               />
           </div>
           <div className="form-element">
@@ -44,7 +74,7 @@ function Registration() {
                 id="age"
                 name="age"
                 value={age}
-                onChange={e => setAge(e.target.value)} 
+                onChange={e => handleChange(e)} 
               />
           </div>
           <div className="form-element">
@@ -54,7 +84,7 @@ function Registration() {
                 id="address"
                 name="address"
                 value={address}
-                onChange={e => setAddress(e.target.value)} 
+                onChange={e => handleChange(e)} 
               />
           </div>
           <div className="form-element">
@@ -64,7 +94,7 @@ function Registration() {
                 id="postcode"
                 name="postcode"
                 value={postcode}
-                onChange={e => setPostcode(e.target.value)} 
+                onChange={e => handleChange(e)} 
               />
           </div>
 
