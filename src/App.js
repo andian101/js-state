@@ -1,9 +1,13 @@
-import Main from './Pages/Main';
+import ToDo from './Pages/ToDo';
+import {Provider} from 'react-redux';
+import {store} from './store';
 import './App.css';
 
 function App() {
   return (
-    <Main />
+    <Provider store={store}>
+      <ToDo />
+    </Provider>
   );
 }
 
