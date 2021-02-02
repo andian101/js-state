@@ -1,45 +1,19 @@
-import {useReducer} from 'react';
+import {REG_EDIT_FIELD} from '../../store/reducers/registerReducer';
+import {useDispatch, useSelector} from 'react-redux';
 import './index.css';
 
-const initialState = {
-  firstName: "",
-  lastName: "",
-  age: 0,
-  address: "",
-  postcode: ""
-};
-
-const reducer = (state, action) => {
-  switch(action.type) {
-    case 'update':
-      return {
-        ...state,
-        [action.field]: action.value
-      }
-    default:
-      return {...state}
-  }
-} 
-// const reducer = (state, {field, value}) => {
-//   return {
-//     ...state,
-//     [field]: value
-//   }
-// } 
-
 function Registration() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  const {
+  const dispatch = useDispatch();
+  const {registration: {
     firstName,
     lastName,
     age,
     address,
     postcode,
-  } = state;
+  }} = useSelector(state => state);
 
   const handleChange = e => dispatch({
-    type: 'update',
+    type: REG_EDIT_FIELD,
     field: e.target.name, 
     value: e.target.value
   });
@@ -48,9 +22,6 @@ function Registration() {
     e.preventDefault();
     alert('Boom!');
   } 
-
-  console.log(state); 
-
   return (
     <div className="registration">
       <h1>Registration Form</h1>
